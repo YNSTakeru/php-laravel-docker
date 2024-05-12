@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(UrlGenerator $url)
     {
+        Validator::extend('unique_in_array', function ($attribute, $value, $parameters, $validator) {
+            if(is_array($value) || $value instanceof \Countable) {
+                return count($value) === count(array_unique($value));
+            } else {
+                return false;
+            }
+        });
+
         if (env('APP_ENV') == 'production') {
             $url->forceScheme('https');
         }
