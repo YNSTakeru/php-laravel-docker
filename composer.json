@@ -10,7 +10,9 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11.0",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "symfony/http-kernel": "^7.0",
+        "symfony/deprecation-contracts": "^2.5"
     },
     "require-dev": {
         "filp/whoops": "^2.15",
